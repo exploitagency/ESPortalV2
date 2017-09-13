@@ -19,6 +19,13 @@ ESPortal is a WiFi Captive Portal Credential Harvester for ESP8266 Devices.<br>
 ESPortal is distributed under the MIT License. The license and copyright notice can not be removed and must be distributed alongside all future copies of the software.<br>
 <br>
 -----<br>
+Accessing ESPortal Main Menu<br>
+-----<br>
+<br>
+SSID: "Free WiFi"<br>
+URL:  http://192.168.1.1/esportal<br>
+<br>
+-----<br>
 Configure ESPortal<br>
 -----<br>
 <br>
@@ -67,11 +74,12 @@ Upon deletion the default settings are automatically restored.<br>
 The filenames must match the below exactly in order to apply a template override.<br>
 captiveportal.html     -     The catch all that handles the redirects.(Would be rare to override this part)<br>
 welcome.html           -     The welcome page for the "free wifi" hotspot.<br>
+error.html             -     Display some sort of custom error when the user enters login credentials.<br>
 spoof_other.html       -     The generic login credential harvester for a site not in the list.<br>
 spoof_site1.html       -     The 1st login credential harvester site in the list with a custom layout.<br>
 spoof_site2.html       -     The 2nd login credential harvester site in the list with a custom layout.<br>
 spoof_site3.html       -     The 3rd login credential harvester site in the list with a custom layout.<br>
-error.html             -     Display some sort of custom error when the user enters login credentials.<br>
+etc..<br>
 <br>
 NOTE: Modifying any ESPortal related setting requires a reboot of the ESPortal device.<br>
 Do not leave any line blank or as a duplicate of another.<br>
