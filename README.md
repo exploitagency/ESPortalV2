@@ -57,7 +57,7 @@ ESPortal Credential Harvester
 A social engineering attack vector.  
 Redirects HTTP requests to a fake login page. 
 Does not support HTTPS requests nor does it override cached HTTPS redirects.  
-You can define a custom template for up to 3 specific domains, a welcome portal, and a catch-all.  
+You can define a custom template for up to 5 specific domains, a welcome portal, and a catch-all.  
   
 Example scenario: Setup ESPortalV2 to act as a free WiFi hotspot.  
   

