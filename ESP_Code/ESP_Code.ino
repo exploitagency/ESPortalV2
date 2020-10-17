@@ -593,7 +593,9 @@ void ViewLog(){
 void setup(void)
 {
   pinMode(LED_BUILTIN, OUTPUT); 
-  Serial.begin(38400);
+  //Serial.begin(38400);
+    // ganti baudrate
+    Serial.begin(115200);
   //SPIFFS.format();
   SPIFFS.begin();
   
